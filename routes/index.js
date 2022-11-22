@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Book = require('../models').Book;
 
+//Handler function to wrap each route
 function asyncHandler(cb) {
   return async(req, res, next) => {
     try {
@@ -24,12 +25,11 @@ router.get('/books', asyncHandler(async(req, res) => {
   res.render('index', { books });
 }));
 
-//Get new book form
+//Create a new book form
 router.get('/books/new',(req, res) => {
   res.render('new-book');
 });
 
-//
 router.post('/books/new', asyncHandler(async(req, res) => {
   const { title, author, genre, year } = req.body;
   try {
@@ -52,7 +52,7 @@ router.post('/books/new', asyncHandler(async(req, res) => {
   }
 }));
 
-//Get book
+//Edits book entry
 router.get('/books/:id', asyncHandler(async(req, res, next) => {
   try {
     const book = await Book.findByPk(req.params.id);
