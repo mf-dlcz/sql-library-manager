@@ -36,10 +36,12 @@ app.use((err, req, res, next) => {
   }
   if (err.status === 404) {
     console.error(err.message)
+    res.render("page-not-found")
     res.status(404)
   } else {
     err.message = err.message || `Oops!  It looks like something went wrong on the server.`;
     console.error(err.message)
+    res.render("error")
     res.status(err.status || 500)
   }
 });

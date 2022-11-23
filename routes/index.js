@@ -14,22 +14,23 @@ function asyncHandler(cb) {
   }
 }
 
-// Get home page
+// Home route
 router.get('/', (req, res) => {
   res.redirect("/books");
 });
 
-//Get books
+//Shows full list of books
 router.get('/books', asyncHandler(async(req, res) => {
   const books = await Book.findAll();
   res.render('index', { books });
 }));
 
-//Create a new book form
+//Shows the create new book form
 router.get('/books/new',(req, res) => {
   res.render('new-book');
 });
 
+//Posts a new book to the database
 router.post('/books/new', asyncHandler(async(req, res) => {
   const { title, author, genre, year } = req.body;
   try {
@@ -52,7 +53,7 @@ router.post('/books/new', asyncHandler(async(req, res) => {
   }
 }));
 
-//Edits book entry
+//Shows book detail form
 router.get('/books/:id', asyncHandler(async(req, res, next) => {
   try {
     const book = await Book.findByPk(req.params.id);
@@ -62,6 +63,7 @@ router.get('/books/:id', asyncHandler(async(req, res, next) => {
   }
 }));
 
+//Updates book info in the database
 router.post('/books/:id', asyncHandler(async(req, res, next) => {
   let book;
   try {
