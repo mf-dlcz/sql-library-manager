@@ -1,5 +1,5 @@
 {
-  "name": "sql-library-manager-v1",
+  "name": "sql-library-manager",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,6 @@
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }
